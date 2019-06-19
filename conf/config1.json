@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "path": "/usr/ssss",
+  "mysqlhost": "127.0.1.1",
+  "mysqlport": "3306",
+  "mysqlusername": "root",
+  "mysqlpassword": "123456"
+}

@@ -1,0 +1,7 @@
+name: demo
+common:
+  db:
+    name: db
+    addr: 127.0.0.1:3306
+    username: root
+    password: root

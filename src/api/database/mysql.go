@@ -15,7 +15,7 @@ func init() {
 		panic(err)
 	}
 	var err error
-	username := viper.GetString("common.redis.username")
+	username := viper.GetString("common.db.username")
 	password := viper.GetString("common.db.password")
 	addr := viper.GetString("common.db.addr")
 	port := viper.GetString("common.db.port")

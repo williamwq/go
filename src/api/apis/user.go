@@ -1,6 +1,7 @@
 package apis
 
 import (
+	"api/commons"
 	"api/database"
 	"github.com/gin-gonic/gin"
 	model "api/models"
@@ -10,10 +11,10 @@ import (
 
 //列表数据
 func Users(c *gin.Context) {
-	var user model.Users
+	var user model.User
 	user.Username = c.Request.FormValue("username")
 	user.Password = c.Request.FormValue("password")
-	result, err := user.User()
+	result, err := user.Users()
 
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
@@ -31,9 +32,9 @@ func Users(c *gin.Context) {
 
 //添加数据
 func Store(c *gin.Context) {
-	var user model.Users
+	var user model.User
 	user.Username = c.Request.FormValue("username")
-	user.Password = public.Md5v(c.Request.FormValue("password"))
+	user.Password = commons.Md5v(c.Request.FormValue("password"))
 	id, err := user.Insert()
 
 	if err != nil {
@@ -52,7 +53,7 @@ func Store(c *gin.Context) {
 
 //修改数据
 func Update(c *gin.Context) {
-	var user model.Users
+	var user model.User
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	user.Password = c.Request.FormValue("password")
 	result, err := user.Update(id)
@@ -71,7 +72,7 @@ func Update(c *gin.Context) {
 
 //删除数据
 func Destroy(c *gin.Context) {
-	var user model.Users
+	var user model.User
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	result, err := user.Destroy(id)
 	if err != nil || result.ID == 0 {
@@ -88,7 +89,7 @@ func Destroy(c *gin.Context) {
 }
 
 func InsertRedis(c *gin.Context)  {
-	var user model.Users
+	var user model.User
 	id, err := strconv.ParseInt(c.Request.FormValue("id"), 10, 64)
 	result, err := user.Find(id)
 

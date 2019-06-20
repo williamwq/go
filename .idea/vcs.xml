@@ -21,6 +21,7 @@
     <mapping directory="$PROJECT_DIR$/src/github.com/spf13/pflag" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/spf13/viper" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/subosito/gotenv" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/wumansgy/goEncrypt" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/golang.org/x/text" vcs="Git" />
   </component>
 </project>

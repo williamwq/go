@@ -21,8 +21,8 @@ func init() {
 	port := viper.GetString("common.db.port")
 	dbname := viper.GetString("common.db.dbname")
 	orm := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local&timeout=10ms",username,password,addr,port,dbname)
-	fmt.Println(orm)
 	Eloquent, err = gorm.Open("mysql", orm)
+	Eloquent.SingularTable(true)
 	//Eloquent, err = gorm.Open("mysql", fmt.Printf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local&timeout=10ms",username,password,addr,port,dbname))
 
 	if err != nil {

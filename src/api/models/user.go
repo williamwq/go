@@ -9,6 +9,9 @@ type User struct {
 	ID       int64  `json:"id"`       // 列名为 `id`
 	Username string `json:"username"` // 列名为 `username`
 	Password string `json:"password"` // 列名为 `password`
+	Address string   `json:"address"` // 地址
+	Token  string  `json:"token"`
+	Age   int        `json:"age"`   //年龄
 }
 
 var Users []User
@@ -42,7 +45,20 @@ func (user *User) Find(id int64) (users []User, err error) {
 	//fmt.Println(users)
 	return
 }
-
+//通过 用户名查找用户
+func (user *User)FindByName(username string) (result []User,err error) {
+	if err = orm.Eloquent.Where("username =?",username).First(&result).Error; err !=nil{
+		return
+	}
+	return
+}
+//查找是否存在
+func (user *User)FindByNameExist(username string) (bools bool,err error) {
+	if err = orm.Eloquent.Where("username = ?",username).First(&bools).Error; err !=nil{
+		panic("连接失败")
+	}
+	return
+}
 //修改
 func (user *User) Update(id int64) (updateUser User, err error) {
 

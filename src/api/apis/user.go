@@ -3,8 +3,8 @@ package apis
 import (
 	"api/commons"
 	"api/database"
-	"github.com/gin-gonic/gin"
 	model "api/models"
+	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
 )
@@ -104,6 +104,51 @@ func InsertRedis(c *gin.Context)  {
 	c.JSON(http.StatusOK, gin.H{
 		"code":  1,
 		"message": "添加成功",
+	})
+
+}
+
+func UserRegister(c *gin.Context)  {
+	var  user model.User
+	user.Age, _ = strconv.Atoi(c.Request.FormValue("age"))
+	username  := c.Request.FormValue("username")
+	user.Username = username
+	bools ,_:= user.FindByNameExist(username)
+	/*fmt.Printf("%+v",err)
+	if err !=nil{
+		c.JSON(200,gin.H{
+			"code":1,
+			"msg":"查询失败",
+			"data":"",
+		})
+		return
+	}*/
+	if bools {
+		c.JSON(200,gin.H{
+			"code":1,
+			"msg":"已经有人注册此用户名",
+			"data":"",
+		})
+		return
+	}
+	password := commons.Md5v(c.Request.FormValue("password"))
+	user.Password = password
+	user.Address = c.Request.FormValue("address")
+	user.Token = commons.Md5v(username+password)
+	id,erro := user.Insert()
+	if erro  !=nil{
+		c.JSON(1,gin.H{
+			"code":1,
+			"msg":"注册失败",
+			"data":"",
+		})
+		return
+	}
+	c.JSON(0,gin.H{
+		"code":http.StatusOK,
+		"id":id,
+		"msg":"注册成功",
+		"token":user.Token,
 	})
 
 }

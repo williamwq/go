@@ -13,8 +13,9 @@ func InitRouter() *gin.Engine {
 	router.POST("/user", Store)
 
 	router.PUT("/user/:id", Update)
-
 	router.DELETE("/user/:id", Destroy)
+	//用户注册
+	router.POST("/user/register",UserRegister)
 	//router.POST("/redis", InsertRedis)
 
 	return router

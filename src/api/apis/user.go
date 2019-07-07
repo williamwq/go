@@ -4,6 +4,7 @@ import (
 	"api/commons"
 	"api/database"
 	model "api/models"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -113,17 +114,12 @@ func UserRegister(c *gin.Context)  {
 	user.Age, _ = strconv.Atoi(c.Request.FormValue("age"))
 	username  := c.Request.FormValue("username")
 	user.Username = username
-	bools ,_:= user.FindByNameExist(username)
-	/*fmt.Printf("%+v",err)
-	if err !=nil{
-		c.JSON(200,gin.H{
-			"code":1,
-			"msg":"查询失败",
-			"data":"",
-		})
+	result,erro := user.FindByName(username)
+	if erro !=nil{
+		fmt.Println("查询出错")
 		return
-	}*/
-	if bools {
+	}
+	if len(result)>0{
 		c.JSON(200,gin.H{
 			"code":1,
 			"msg":"已经有人注册此用户名",

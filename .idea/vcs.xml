@@ -4,6 +4,7 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/BurntSushi/toml" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/fsnotify/fsnotify" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/go-xorm/xorm" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/gomodule/redigo" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/hashicorp/hcl" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/howeyc/fsnotify" vcs="Git" />
@@ -23,5 +24,7 @@
     <mapping directory="$PROJECT_DIR$/src/github.com/subosito/gotenv" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/wumansgy/goEncrypt" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/golang.org/x/text" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/xorm.io/builder" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/xorm.io/core" vcs="Git" />
   </component>
 </project>

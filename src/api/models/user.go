@@ -47,17 +47,15 @@ func (user *User) Find(id int64) (users []User, err error) {
 }
 //通过 用户名查找用户
 func (user *User)FindByName(username string) (result []User,err error) {
-	if err = orm.Eloquent.Where("username =?",username).First(&result).Error; err !=nil{
+	if err = orm.Eloquent.Select("id").Where("username =?",username).First(&result).Error; err !=nil{
 		return
 	}
 	return
 }
 //查找是否存在
-func (user *User)FindByNameExist(username string) (bools bool,err error) {
-	if err = orm.Eloquent.Where("username = ?",username).First(&bools).Error; err !=nil{
-		panic("连接失败")
-	}
-	return
+func (user *User)FindByNameExist(username string) (result bool) {
+	return orm.Eloquent.Where("username = ?",username).First(&result).RecordNotFound()
+
 }
 //修改
 func (user *User) Update(id int64) (updateUser User, err error) {

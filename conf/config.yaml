@@ -1,11 +1,11 @@
 name: will
 common:
   db:
-    dbname : godb
+    dbname : test
     addr: 127.0.0.1
     port : 3306
     username: root
-    password: 123456
+    password: root
 
   redis:
     name: redis

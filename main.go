@@ -1,10 +1,11 @@
 package main
 
 import (
-	_ "api/database"
-	orm "api/database"
-	"api/router"
+	_ "github.com/williamwq/go/src/api/database"
+	orm "github.com/williamwq/go/src/api/database"
+	"github.com/williamwq/go/src/api/router"
 )
+
 type Config struct {
 	Enabled bool
 	Path    string

@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	. "api/apis"
+	. "github.com/williamwq/go/src/api/apis"
 )
 
 func InitRouter() *gin.Engine {
@@ -15,8 +15,9 @@ func InitRouter() *gin.Engine {
 	router.PUT("/user/:id", Update)
 	router.DELETE("/user/:id", Destroy)
 	//用户注册
-	router.POST("/user/register",UserRegister)
+	router.POST("/user/register", UserRegister)
 	//router.POST("/redis", InsertRedis)
+	router.POST("/login", Login)
 
 	return router
 }

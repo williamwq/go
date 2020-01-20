@@ -1,17 +1,16 @@
-
 package models
 
 import (
-	orm "api/database"
+	orm "github.com/williamwq/go/src/api/database"
 )
 
 type User struct {
 	ID       int64  `json:"id"`       // 列名为 `id`
 	Username string `json:"username"` // 列名为 `username`
 	Password string `json:"password"` // 列名为 `password`
-	Address string   `json:"address"` // 地址
-	Token  string  `json:"token"`
-	Age   int        `json:"age"`   //年龄
+	Address  string `json:"address"`  // 地址
+	Token    string `json:"token"`
+	Age      int    `json:"age"` //年龄
 }
 
 var Users []User
@@ -21,7 +20,7 @@ func (user User) Insert() (id int64, err error) {
 
 	//添加数据
 	result := orm.Eloquent.Create(&user)
-	id =user.ID
+	id = user.ID
 	if result.Error != nil {
 		err = result.Error
 		return
@@ -39,24 +38,35 @@ func (user *User) Users() (users []User, err error) {
 
 //列表
 func (user *User) Find(id int64) (users []User, err error) {
-	if err = orm.Eloquent.Where("id = ?",id).First(&users).Error; err != nil {
+	if err = orm.Eloquent.Where("id = ?", id).First(&users).Error; err != nil {
 		return
 	}
 	//fmt.Println(users)
 	return
 }
+
 //通过 用户名查找用户
-func (user *User)FindByName(username string) (result []User,err error) {
-	if err = orm.Eloquent.Select("id").Where("username =?",username).First(&result).Error; err !=nil{
+func (user *User) FindByName(username string) (result []User, err error) {
+	if err = orm.Eloquent.Select("id").Where("username =?", username).First(&result).Error; err != nil {
 		return
 	}
 	return
 }
+
+//通过 用户名查找用户
+func (user *User) FindByNames(username string) (result []User, err error) {
+	if err = orm.Eloquent.Select("*").Where("username =?", username).First(&result).Error; err != nil {
+		return
+	}
+	return
+}
+
 //查找是否存在
-func (user *User)FindByNameExist(username string) (result bool) {
-	return orm.Eloquent.Where("username = ?",username).First(&result).RecordNotFound()
+func (user *User) FindByNameExist(username string) (result bool) {
+	return orm.Eloquent.Where("username = ?", username).First(&result).RecordNotFound()
 
 }
+
 //修改
 func (user *User) Update(id int64) (updateUser User, err error) {
 

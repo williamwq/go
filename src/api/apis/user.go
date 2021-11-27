@@ -13,7 +13,7 @@ import (
 //列表数据
 func Users(c *gin.Context) {
 	var user model.User
-	user.Username = c.Request.FormValue("username")
+	/*user.Username = c.Request.FormValue("username")
 	user.Password = c.Request.FormValue("password")
 	if user.Username == "" {
 		c.JSON(http.StatusOK, gin.H{
@@ -28,7 +28,7 @@ func Users(c *gin.Context) {
 			"message": "密码不能为空",
 		})
 		return
-	}
+	}*/
 	result, err := user.Users()
 
 	if err != nil {
@@ -77,6 +77,26 @@ func Store(c *gin.Context) {
 		"code":    1,
 		"message": "添加成功",
 		"data":    id,
+	})
+}
+
+//获取单条数据
+func Getuser(c *gin.Context) {
+	var user model.User
+	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
+	user.Password = c.Request.FormValue("password")
+	result, err := user.FindById(id)
+	if err != nil || result.ID == 0 {
+		c.JSON(http.StatusOK, gin.H{
+			"code":    -1,
+			"message": "查询失败",
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code":    1,
+		"message": "成功",
+		"data":    result,
 	})
 }
 

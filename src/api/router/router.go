@@ -8,10 +8,11 @@ import (
 func InitRouter() *gin.Engine {
 	router := gin.Default()
 	InitRouter1(router)
-	router.GET("/users", Users)
+	router.GET("/user/users", Users)
+	router.GET("/test/tests", Tests)
 
 	router.POST("/user", Store)
-
+	router.GET("/users/:id", Getuser)
 	router.PUT("/user/:id", Update)
 	router.DELETE("/user/:id", Destroy)
 	//用户注册

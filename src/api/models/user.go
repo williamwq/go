@@ -13,7 +13,7 @@ type User struct {
 	Age      int    `json:"age"` //年龄
 }
 
-var Users []User
+//var Users []User
 
 //添加
 func (user User) Insert() (id int64, err error) {
@@ -56,6 +56,14 @@ func (user *User) FindByName(username string) (result []User, err error) {
 //通过 用户名查找用户
 func (user *User) FindByNames(username string) (result []User, err error) {
 	if err = orm.Eloquent.Select("*").Where("username =?", username).First(&result).Error; err != nil {
+		return
+	}
+	return
+}
+
+//通过 用户ID查找用户
+func (user *User) FindById(id int64) (result User, err error) {
+	if err = orm.Eloquent.Select("*").Where("id =?", id).First(&result).Error; err != nil {
 		return
 	}
 	return

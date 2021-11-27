@@ -6,15 +6,15 @@ import (
 )
 
 func InitRouter1(engine *gin.Engine) {
-	//router := gin.Default()
+	router := gin.Default()
 
-	/*router.GET("/users", Users)
+	router.GET("/users", Users)
 
 	router.POST("/user", Store)
 
 	router.PUT("/user/:id", Update)
 
-	router.DELETE("/user/:id", Destroy)*/
+	router.DELETE("/user/:id", Destroy)
 	engine.POST("/redis", InsertRedis)
 
 	//return router

@@ -1,7 +1,7 @@
 name: demo
 common:
   db:
-    dbname: db
+    dbname: test
     addr: 127.0.0.1:3306
     username: root
     password: root
